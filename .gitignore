@@ -1,0 +1,103 @@
+# Data files
+backend/data/raw_case_studies/
+backend/data/raw_html/
+backend/data/temp/
+
+# Extracted data (optional - you may want to keep these for demo purposes)
+# backend/data/case_studies/
+
+# Environment and configuration
+.env
+.env.local
+.env.*.local
+**/anthropic_api_key.txt
+**/config.json
+
+# Cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python backend
+/backend/__pycache__/
+/backend/*/__pycache__/
+/backend/*/*/__pycache__/
+/backend/*/*/*/__pycache__/
+/backend/venv/
+/backend/env/
+/backend/.env
+/backend/*.log
+/backend/*.pyc
+/backend/*.pyo
+/backend/*.pyd
+
+# Node.js (for both frontend and frontend-next)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+.yarn/install-state.gz
+
+# Next.js frontend build
+/frontend-next/.next/
+/frontend-next/out/
+/frontend-next/build/
+/frontend-next/node_modules/
+/frontend-next/.env*
+/frontend-next/npm-debug.log*
+/frontend-next/yarn-debug.log*
+/frontend-next/yarn-error.log*
+
+# Common
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pems
+
+# Coverage reports
+coverage/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.history/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Data and temp files
+*.csv
+*.xlsx
+*.xls
+*.db
+*.sqlite
+temp/
+tmp/
