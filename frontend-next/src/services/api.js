@@ -6,8 +6,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
   : "http://localhost:5001/api";
 
 // Backend URL (used for direct API calls if needed)
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_API_URL || "${process.env.NEXT_PUBLIC_API_URL}/api";
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
 
 // Company Analysis API
 export const companyAnalysisApi = {
