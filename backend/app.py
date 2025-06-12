@@ -39,7 +39,16 @@ logger = logging.getLogger(__name__)
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+
+# Configure CORS to allow both www and non-www versions
+CORS(app, origins=[
+    "https://clauderoicalculator.com",
+    "https://www.clauderoicalculator.com",
+    "http://clauderoicalculator.com",
+    "http://www.clauderoicalculator.com",
+    "http://localhost:3000",  # For local development
+    "http://localhost:3001"   # Alternative local port
+])
 
 # Check for API key
 api_key = os.environ.get("ANTHROPIC_API_KEY")
