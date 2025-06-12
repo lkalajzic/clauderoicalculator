@@ -4,7 +4,8 @@ Increases timeout to handle long-running Anthropic API calls
 """
 
 # Server socket
-bind = "0.0.0.0:5001"
+import os
+bind = f"0.0.0.0:{os.environ.get('PORT', 5001)}"
 
 # Worker processes
 workers = 1  # Keep it simple for now
