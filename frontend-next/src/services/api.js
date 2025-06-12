@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// Base URL for API calls - using Flask backend directly
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
-  ? `${process.env.NEXT_PUBLIC_API_URL}/api`
-  : "http://localhost:5001/api";
+// Base URL for API calls - using Vercel rewrites in production
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? '/api'  // Use relative URL in production (Vercel will rewrite)
+  : 'http://localhost:5001/api';
 
 // Backend URL (used for direct API calls if needed)
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001";
+const BACKEND_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5001';
 
 // Company Analysis API
 export const companyAnalysisApi = {
