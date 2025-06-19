@@ -1018,13 +1018,31 @@ Company Description:
             with open(enhanced_path, "r") as f:
                 case_studies = json.load(f)
             print(f"Loaded {len(case_studies)} case studies for examples")
+        except FileNotFoundError:
+            print(f"Warning: Case studies file not found at {enhanced_path}")
+            print("Continuing without case study examples...")
+            case_studies = []
+        except json.JSONDecodeError as e:
+            print(f"Error parsing case studies JSON: {e}")
+            case_studies = []
         except Exception as e:
-            print(f"Error loading case studies: {e}")
+            print(f"Unexpected error loading case studies: {e}")
             case_studies = []
         
         # Create the mega prompt
         if corrected_data:
             # User has reviewed and corrected the data
+            # Ensure corrected_data is a dict
+            if not isinstance(corrected_data, dict):
+                raise ValueError("corrected_data must be a dictionary")
+            
+            # Safely extract company info
+            company_info = corrected_data.get('companyInfo', {}) if isinstance(corrected_data, dict) else {}
+            company_name = company_info.get('name', 'Not specified') if isinstance(company_info, dict) else 'Not specified'
+            industry = company_info.get('industry', 'Not specified') if isinstance(company_info, dict) else 'Not specified'
+            total_employees = company_info.get('totalEmployees', 0) if isinstance(company_info, dict) else 0
+            headquarters = company_info.get('headquarters', 'Not specified') if isinstance(company_info, dict) else 'Not specified'
+            
             combined_prompt = f"""
         Analyze this company and provide a complete AI implementation roadmap.
         
@@ -1040,10 +1058,10 @@ Company Description:
         INSTRUCTIONS:
         
         1. USE THE CORRECTED DATA:
-        - Company name: {corrected_data.get('companyInfo', {}).get('name', 'Not specified')}
-        - Industry: {corrected_data.get('companyInfo', {}).get('industry', 'Not specified')} 
-        - Total employees: {corrected_data.get('companyInfo', {}).get('totalEmployees', 0)}
-        - Headquarters: {corrected_data.get('companyInfo', {}).get('headquarters', 'Not specified')}
+        - Company name: {company_name}
+        - Industry: {industry} 
+        - Total employees: {total_employees}
+        - Headquarters: {headquarters}
         - Employee counts per function: USE THE PROVIDED businessFunctions data
         - Salaries: USE THE adjustedSalaryUSD values provided
         

@@ -170,6 +170,14 @@ def analyze_and_match():
     description = data['description']
     corrected_data = data.get('correctedData', None)  # Optional corrected data from user review
     
+    # Ensure corrected_data is either None or a dict
+    if corrected_data is not None and not isinstance(corrected_data, dict):
+        try:
+            # Try to parse if it's a JSON string
+            corrected_data = json.loads(corrected_data)
+        except:
+            return jsonify({"error": "correctedData must be a JSON object"}), 400
+    
     try:
         logger.info("Analyzing and matching company in ONE step")
         result = company_analyzer.analyze_and_match_combined(description, corrected_data)

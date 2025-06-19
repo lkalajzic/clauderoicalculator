@@ -32,5 +32,5 @@ venv/
 ENV/
 
 # Local data
-data/case_studies/*.json
+# data/case_studies/*.json  # Commenting out - we need this file in production
 data/raw_case_studies/*.html
